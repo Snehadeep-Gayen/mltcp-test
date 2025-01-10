@@ -1,4 +1,4 @@
-# Proof of the Shift Equation (2) of MLTCP (HotNets'24)
+# Derivation of the Shift Equation (2) of MLTCP (HotNets'24)
 
 ## The Result
 The shift equation in MLTCP explains how the start time differences (\( \Delta_i \)) between two jobs change as the MLTCP algorithm converges.
@@ -26,6 +26,10 @@ Where:
 | *Shifting of the communication pattern by MLTCP, taken from [MLTCP (HotNets'24)](https://doi.org/10.1145/3696348.3696878)* |
 
 The figure below divides the communication pattern into smaller regions A, B, C, D. 
+
+|![Diagram](mltcp1.drawio.png){width=300px}|
+|:-----------------------------------:|
+| *Dividing the region in smaller chunks. Since the blue area equals the green area, B=D.* |
 
 Since the jobs are identical, the difference between the end-times of the previous iteration would be the difference between the start-times in the next communication cycle. Thus the width of the green area $A+D$ is $\Delta_{i+1}$. 
 
