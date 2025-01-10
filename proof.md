@@ -8,10 +8,11 @@ $$
 $$
 
 Where:
-- \( \Delta_i \): Start time difference in iteration \( i \).
-- \( T \): Total iteration time.
-- \( a \): Fraction of the iteration spent in communication (\( 0 < a < 1 \)).
-- \(\text{Slope}\) and \(\text{Intercept}\): Parameters of the bandwidth aggressiveness function below
+
+- $ \Delta_i $: Start time difference in iteration $ i $.
+- $ T $: Total iteration time.
+- $ a $: Fraction of the iteration spent in communication ($ 0 < a < 1 $).
+- **Slope** and **Intercept**: Parameters of the bandwidth aggressiveness function below.
 
 $$
     F(\text{bytes\_ratio}) = \text{Slope} \cdot \text{bytes\_ratio} + \text{Intercept}
