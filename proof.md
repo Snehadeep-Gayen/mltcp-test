@@ -30,19 +30,19 @@ The figure below divides the communication pattern into smaller regions A, B, C,
 
 |![Diagram](mltcp1.drawio.png){width=300px}|
 |:-----------------------------------:|
-| *Dividing the region in smaller chunks. Since the blue area equals the green area, B=D.* |
+| *Dividing the region in smaller chunks. Since the blue area equals the green area, area(B) = area(D).* |
 
 Since the jobs are identical, the difference between the end-times of the previous iteration would be the difference between the start-times in the next communication cycle. Thus the width of the green area $A+D$ is $\Delta_{i+1}$. 
 
 Further, the blue area is equal to the green area, which represents the total number of bytes sent in the communication phase, given as $a \cdot T$ in the paper. Thus, removing the common areas A and C, we have $B=D$.
 
-Notice that $D = c  \cdot \left(\Delta_{i+1} - \Delta_{i}\right) = c \cdot \text{Shift}(\Delta_i)$, where $c$ is the capacity of the bottleneck link. So, we would like to find the blue area $B$ to obtain $\text{Shift}(\Delta_i)$.
+Notice that $D = c  \cdot \left(\Delta_{i+1} - \Delta_{i}\right) = c \cdot \text{Shift}(\Delta_i)$, where $c$ is the capacity of the bottleneck link. So, we need to find the blue area $B$ to obtain $\text{Shift}(\Delta_i)$.
 
-To find $B$, we must find the ratio $r$ of the bandwidth allotted to the blue flow to that of the green flow, in the overlapping region. From the MLTCP modification, we get that this ratio would be ratio of the aggression function 
+To find $B$, we must compute the ratio $r$ of the bandwidth allotted to the blue flow to that of the green flow, in the overlapping region. From the MLTCP modification, we get that this ratio would be ratio of the aggression functions 
 
 $$ r = F_\text{blue}/F_\text{green} = \frac{\text{Slope} \cdot \text{bytes\_ratio}_\text{blue} + \text{Intercept}}{\text{Slope} \cdot \text{bytes\_ratio}_\text{green} + \text{Intercept}} $$
 
-Since the green flow is just starting, its byte ratio is 0, while the blue flow has already transmitted $\Delta_i \cdot c$ out of a total of $a \cdot T$ bytes, making its bytes ratio as $\frac{\Delta_i \cdot c}{a \cdot T}$.
+Since the green flow is just starting, its byte ratio is 0. The blue flow has already transmitted $\Delta_i \cdot c$ out of a total of $a \cdot T$ bytes, making its bytes ratio as $\frac{\Delta_i \cdot c}{a \cdot T}$.
 
 Thus the area of the region B equals 
 
@@ -53,5 +53,5 @@ $$
 = \frac{\text{Slope} \cdot \Delta_i \cdot (a \cdot T - \Delta_i)}{a \cdot T \cdot \text{Intercept} + \Delta_i \cdot \text{Slope}} c
 $$
 
-The width, above, is the number of bytes left for the blue flow by the link bandwidth used by the blue flow. Thus we have $$\text{Shift}(\Delta_i) = (\text{area}\ D) / c = (\text{area}\ B) / c = \frac{\text{Slope} \cdot \Delta_i \cdot (a \cdot T - \Delta_i)}{a \cdot T \cdot \text{Intercept} + \Delta_i \cdot \text{Slope}} $$
+The width, above, is the number of bytes remaining for the blue flow divided by the link bandwidth used by the blue flow. Thus we have $$\text{Shift}(\Delta_i) = (\text{area}\ D) / c = (\text{area}\ B) / c = \frac{\text{Slope} \cdot \Delta_i \cdot (a \cdot T - \Delta_i)}{a \cdot T \cdot \text{Intercept} + \Delta_i \cdot \text{Slope}} $$
 

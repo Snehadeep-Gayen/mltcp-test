@@ -19,7 +19,7 @@ int main()
 {
     // Parameters
     int sz = 3;                   // number of flows (or jobs)
-    vector<int> net = {16, 8, 4}; // time for which it uses the network (at full bottleneck link
+    vector<int> net = {20, 10, 5}; // time for which it uses the network (at full bottleneck link
                                   // capacity). Corresponds to a*T in the HotNets paper
     int SIMTICKS = 200000;
     int sumnet = accumulate(net.begin(), net.end(), 0); // sum of network times
@@ -68,6 +68,13 @@ int main()
 
         vector<int> stats(sz, 0);
         vector<int> w(sz, 0);
+        int tempsum = 0;
+        for(int i=0; i<sz; i++)
+        {
+            w[i] = tempsum;
+            tempsum += compute_time[i];
+        }
+
         float DELTA = 0.01;
 
         for (int tick = 0; tick < SIMTICKS; tick++)
@@ -129,6 +136,8 @@ int main()
         // Print average compute utilization
         cout << "Average compute util (for x=" << x << "): " << avg_fraction_fairtcp << ", " << avg_fraction_mltcp
              << "\n";
+
+        cout << "Ratio: " << avg_fraction_fairtcp/avg_fraction_mltcp << "\n";
     }
 
     return 0;
